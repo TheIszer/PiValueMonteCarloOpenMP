@@ -12,8 +12,8 @@ int pi_value(int num_trials)
 	for(uint32_t i=0; i<num_trials; i++){
 		//rand()%(max-min + 1) + min
 		//x = rand(-r,r); 
-		x = rand()%(2*r + 1) - r;
-		y = rand()%(2*r + 1) - r;
+		x = srand();
+		y = srand();
 		if ( (x*x + y*y) <= (r*r)) trials_in_circ++;
 	}
 	pi = 4.0 * ((double) trials_in_circ /(double)num_trials);
