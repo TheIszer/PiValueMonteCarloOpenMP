@@ -1,5 +1,6 @@
 #include <global.hh>
 #include <omp.h>
+#include <cstdlib>
 
 int pi_value(int num_trials)
 {
@@ -7,11 +8,13 @@ int pi_value(int num_trials)
 	double pi;
 	double x, y;
 	double r = 1.0; 
-	#pragma omp parallel for private (x, y) reduction (+:Ncirc) 
+	#pragma omp parallel for private (x, y) reduction (+:trials_in_circ) 
 	for(uint32_t i=0; i<num_trials; i++){
-		x = rand(-r,r); 
-		y = rand(-r,r);
-		if ( x*x + y*y) <= r*r) trials_in_circ++;
+		//rand()%(max-min + 1) + min
+		//x = rand(-r,r); 
+		x = rand()%(2*r + 1) - r;
+		y = rand()%(2*r + 1) - r;
+		if ( (x*x + y*y) <= (r*r)) trials_in_circ++;
 	}
 	pi = 4.0 * ((double) trials_in_circ /(double)num_trials);
 	return(pi); 
