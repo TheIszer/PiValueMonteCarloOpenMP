@@ -13,8 +13,10 @@ int pi_value(int num_trials)
 	for(uint32_t i=0; i<num_trials; i++){
 		//rand()%(max-min + 1) + min
 		//x = rand(-r,r); 
-		x = rand();
-		y = rand();
+		std::mt19937 rng(1298321);
+		std::uniform_int_distribution<double> gen(-r, r); // uniform, unbiased
+		x = gen(rng);
+		y = gen(rng);
 		std::cout << "x: " << x << " y:" << y << std::endl;
 		if ( (x*x + y*y) <= (r*r)) trials_in_circ++;
 	}
