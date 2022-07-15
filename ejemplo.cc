@@ -14,9 +14,11 @@ int pi_value(int num_trials)
 		//x = rand(-r,r); 
 		x = rand();
 		y = rand();
+		std::cout << "x: " << x << " y:" << y << std::endl;
 		if ( (x*x + y*y) <= (r*r)) trials_in_circ++;
 	}
 	pi = 4.0 * ((double) trials_in_circ /(double)num_trials);
+	std::cout << "TIC: " << trials_in_circ << " pi:" << pi << std::endl;
 	return(pi); 
 }
 
